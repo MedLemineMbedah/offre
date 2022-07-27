@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/style/images/logo.png}">
+    <link rel="icon" type="image/png" th:href="@{/style/images/logo.png}">
+    <title>
+        Offres | Utilisateurs
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link th:href="@{/assets/css/nucleo-icons.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <script th:src="@{/assets/js/42d5adcbca.js}" crossorigin="anonymous"></script>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" th:href="@{/assets/css/soft-ui-dashboard.css?v=1.0.3}" rel="stylesheet" />
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+<!-- Side begin-->
+<!-- side end -->
+<aside th:replace="user/interface/include/leftbar"></aside>
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav  th:replace="user/interface/include/navbar" ></nav>
+ <!-- End Navbar -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Les offres</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Objectif</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date Fin</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Delai </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                    <th class="text-secondary opacity-7"></th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="offre : ${lesoffres}">
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">[[${offre.objet}]]</p>
+                                    </td>
+                                    <td >
+                                        <span class="text-secondary text-xs font-weight-bold">[[${#dates.format(offre.datePublication, 'dd-MMM-yyyy')}]]</span>
+                                    </td>
+                                    <td >
+                                        <span class="text-secondary text-xs font-weight-bold">[[${#dates.format(offre.dateFin, 'dd-MMM-yyyy')}]]</span>
+                                    </td>
+
+                                    <td >
+                                        <span class="text-secondary text-xs font-weight-bold">[[${offre.delai}]] / mois</span>
+                                    </td>
+                                    <td>
+
+                                        <p class="text-xs font-weight-bold mb-0">[[${#numbers.formatDecimal(offre.montant, 1, 'DEFAULT', 2, 'DEFAULT')}]]</p>
+
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span class="badge badge-sm bg-gradient-success">[[${offre.status}]]</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a th:href="@{'/user/offres/' + ${offre.id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Info">
+                                            <i class="fa fa-info" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a th:href="@{'/user/pdffile/' + ${offre.id} + '/offre.pdf'}"  class="text-secondary font-weight-bold text-xs" th:target="_blank" >
+                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </th:block>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Projet attribuer</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center justify-content-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Projet</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date Fin</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Completion</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="offrea : ${offreattribuer}">
+
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">[[${offrea.objet}]]</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">[[${#dates.format(offrea.dateAttribution, 'dd-MMM-yyyy')}]]</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm font-weight-bold mb-0">[[${#numbers.formatDecimal(offrea.montant, 1, 'DEFAULT', 2, 'DEFAULT')}]]</p>
+                                    </td>
+                                    <td>
+                                        <span th:if="${offrea.status == '100'}" class="text-xs font-weight-bold">Termine</span>
+                                        <span th:if="${offrea.status == '0'}" class="text-xs font-weight-bold">pas encours</span>
+                                        <span th:if="${offrea.status != '100'}" class="text-xs font-weight-bold">encours</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <span class="me-2 text-xs font-weight-bold">[[${offrea.status}]]%</span>
+                                            <div>
+                                                <div class="progress">
+                                                    <div th:if="${offrea.status == '100'}" class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="[[${offrea.status}]]" aria-valuemin="0" aria-valuemax="[[${offrea.status}]]" style="width: 100%;"></div>
+                                                    <div th:if="${offrea.status != '100'}" class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="[[${offrea.status}]]" aria-valuemin="0" aria-valuemax="[[${offrea.status}]]" th:style="'width:'+ ${offrea.status} +'%'"></div>
+                                                    <div th:if="${offrea.status == '0'}" class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v text-xs"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!--   Core JS Files   -->
+<script th:src="@{/assets/js/core/popper.min.js}"></script>
+<script th:src="@{/assets/js/core/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/plugins/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/assets/js/plugins/smooth-scrollbar.min.js}"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+<!-- Github buttons -->
+<script async defer th:src="@{/assets/js/buttons.js}"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script th:src="@{/assets/js/soft-ui-dashboard.min.js?v=1.0.3}"></script>
+
+
+</body>
+
+</html>

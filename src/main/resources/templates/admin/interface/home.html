@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Offre | Administrateur</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/style/images/logo.png}">
+    <link th:href="@{/style/vendor/jqvmap/css/jqvmap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/vendor/chartist/css/chartist.min.css}">
+    <link th:href="@{/style/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}" rel="stylesheet">
+    <link th:href="@{/style/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+    <link th:href="@{/style/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<script>
+    function loadSearchResult()
+    		{
+
+    		 $.ajax({
+    			  type: 'get',
+    			  url: /*[[ @{'/url'} ]]*/,
+
+    			  success: function(data){
+
+    				  /*<![CDATA[*/
+
+
+    				  $('.search_list').html(data);
+
+
+    				  /*]]>*/
+    				},
+
+    			})
+
+    		}
+</script>
+<script th:src="@{/style/js/getrequest.js}"></script>
+<body>
+
+
+
+
+<div id="main-wrapper">
+
+
+    <div th:replace="admin/interface/include/navheader"></div>
+
+<div th:replace="admin/interface/include/navbar"></div>
+
+    <div th:replace="admin/interface/include/leftbar"></div>
+
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="form-head d-flex align-items-center mb-sm-4 mb-3">
+                <div class="mr-auto">
+                    <h2 class="text-black font-w600">Tableau De Bord</h2>
+                    <p class="mb-0"> Administrateur Tableau de bord</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body mr-3">
+                                    <h2 class="fs-34 text-black font-w600">[[${offreencours}]]</h2>
+                                    <span>Offre En cours</span>
+                                </div>
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0)">
+                                        <path d="M32.04 4.08H31.24V2.04C31.24 0.8 30.4 0 29.2 0C28 0 27.16 0.8 27.16 2.04V4.08H13.88V2.04C13.88 0.8 13.08 0 11.84 0C10.6 0 9.80002 0.8 9.80002 2.04V4.08H7.96002C4.08002 4.08 0.800018 7.36 0.800018 11.24V32.88C0.800018 36.76 4.08002 40.04 7.96002 40.04H32.04C35.92 40.04 39.2 36.76 39.2 32.88V11.24C39.2 7.36 35.92 4.08 32.04 4.08ZM7.96002 8.16H32.04C33.68 8.16 35.12 9.6 35.12 11.24V14.08H4.88002V11.24C4.88002 9.6 6.32002 8.16 7.96002 8.16ZM32.04 35.92H7.96002C6.32002 35.92 4.88002 34.48 4.88002 32.84V18.16H35.08V32.84C35.12 34.48 33.68 35.92 32.04 35.92Z" fill="#007A64"/>
+                                        <path d="M16.12 20.6H14.48C13.44 20.6 12.84 21.4 12.84 22.24V24.08C12.84 25.12 13.64 25.72 14.48 25.72H16.12C17.16 25.72 17.76 24.92 17.76 24.08V22.44C17.96 21.44 17.16 20.6 16.12 20.6Z" fill="#007A64"/>
+                                        <path d="M25.52 20.6H23.88C22.84 20.6 22.24 21.4 22.24 22.24V24.08C22.24 25.12 23.04 25.72 23.88 25.72H25.52C26.56 25.72 27.16 24.92 27.16 24.08V22.44C27.16 21.44 26.32 20.6 25.52 20.6Z" fill="#007A64"/>
+                                        <path d="M16.12 28.56H14.48C13.44 28.56 12.84 29.36 12.84 30.2V31.84C12.84 32.88 13.64 33.48 14.48 33.48H16.12C17.16 33.48 17.76 32.68 17.76 31.84V30.2C17.96 29.4 17.16 28.56 16.12 28.56Z" fill="#007A64"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0">
+                                            <rect width="40" height="40" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-3  col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body mr-3">
+                                    <h2 class="fs-34 text-black font-w600">[[${participations}]]</h2>
+                                    <span>Participation</span>
+                                </div>
+                                <svg id="Layer_1" height="40" viewBox="0 0 24 24" width="40" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m16 16a1 1 0 0 1 -1 1h-2v2a1 1 0 0 1 -2 0v-2h-2a1 1 0 0 1 0-2h2v-2a1 1 0 0 1 2 0v2h2a1 1 0 0 1 1 1zm6-5.515v8.515a5.006 5.006 0 0 1 -5 5h-10a5.006 5.006 0 0 1 -5-5v-14a5.006 5.006 0 0 1 5-5h4.515a6.958 6.958 0 0 1 4.95 2.05l3.484 3.486a6.951 6.951 0 0 1 2.051 4.949zm-6.949-7.021a5.01 5.01 0 0 0 -1.051-.78v4.316a1 1 0 0 0 1 1h4.316a4.983 4.983 0 0 0 -.781-1.05zm4.949 7.021c0-.165-.032-.323-.047-.485h-4.953a3 3 0 0 1 -3-3v-4.953c-.162-.015-.321-.047-.485-.047h-4.515a3 3 0 0 0 -3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3z"/></svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-3  col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body mr-3">
+                                    <h2 class="fs-34 text-black font-w600">[[${entreprises}]]</h2>
+                                    <span>Total Entreprise</span>
+                                </div>
+                                <svg id="Layer_1" height="40" viewBox="0 0 24 24" width="40" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m4 13h3v2h-3zm5 2h3v-2h-3zm-5 4h3v-2h-3zm5 0h3v-2h-3zm-5-12h3v-2h-3zm5 0h3v-2h-3zm-5 4h3v-2h-3zm5 0h3v-2h-3zm15-3v16h-24v-21a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v2h5a3 3 0 0 1 3 3zm-10-5a1 1 0 0 0 -1-1h-10a1 1 0 0 0 -1 1v19h12zm8 5a1 1 0 0 0 -1-1h-5v15h6zm-4 7h2v-2h-2zm0 4h2v-2h-2zm0-8h2v-2h-2z"/></svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-3  col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body mr-3">
+                                    <h2 class="fs-34 text-black font-w600">[[${personnes}]]</h2>
+                                    <span>Total Personne</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="40" height="40"><path d="M23,11H21V9a1,1,0,0,0-2,0v2H17a1,1,0,0,0,0,2h2v2a1,1,0,0,0,2,0V13h2a1,1,0,0,0,0-2Z"/><path d="M9,12A6,6,0,1,0,3,6,6.006,6.006,0,0,0,9,12ZM9,2A4,4,0,1,1,5,6,4,4,0,0,1,9,2Z"/><path d="M9,14a9.01,9.01,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,9,14Z"/></svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">ISCAE group</a> 2022</p>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script th:src="@{/style/vendor/global/global.min.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/style/vendor/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/style/js/custom.min.js}"></script>
+<script th:src="@{/style/js/deznav-init.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-datetimepicker/js/moment.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<!-- Chart piety plugin files -->
+<script th:src="@{/style/vendor/peity/jquery.peity.min.js}"></script>
+
+<!-- Apex Chart -->
+<script th:src="@{/style/vendor/apexchart/apexchart.js}"></script>
+
+<!-- Dashboard 1 -->
+<script th:src="@{/style/js/dashboard/dashboard-1.js}"></script>
+<script>
+		$(function () {
+			$('#datetimepicker1').datetimepicker({
+				inline: true,
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Offre | Administration</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/style/images/logo.png}">
+    <link th:href="@{/style/vendor/jqvmap/css/jqvmap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/vendor/chartist/css/chartist.min.css}">
+    <link th:href="@{/style/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}" rel="stylesheet">
+    <link th:href="@{/style/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+    <link th:href="@{/style/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="main-wrapper">
+
+    <div th:replace="admin/interface/include/navheader"></div>
+    <div th:replace="admin/interface/include/navbar"></div>
+
+    <div th:replace="admin/interface/include/leftbar"></div>
+    <div class="content-body">
+
+        <div class="container-fluid">
+
+            <div class="page-titles">
+                <h4>Administration</h4>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">[[${page_head}]]</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">[[${page}]]</a></li>
+                </ol>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h6>Les offres</h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Entreprise</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Responsable</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dossier</th>
+                                        <th class="text-secondary opacity-7"></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <th:block th:each="p : ${offre.postilerE}">
+                                        <tr>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">[[${p.entreprise.denomination}]]</p>
+                                            </td>
+                                            <td >
+                                                <span class="text-secondary text-xs font-weight-bold">[[${p.entreprise.personne.nom}]]</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a th:href="@{'/admin/offre/file/'+${p.id}}"  class="text-secondary font-weight-bold text-xs" th:target="_blank" >
+                                                    <i class="fa fa-download" aria-hidden="true">Telécharger</i>
+
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <p>
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse"  th:attr="data-target='#collapseExample'+${p.id}"  aria-expanded="true" >
+                                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                                    </button>
+                                                </p>
+
+                                                <div class="collapse" th:id="'collapseExample' +${p.id}" >
+                                                    <div class="card card-body">
+                                                        [[${p.description}]]
+                                                    </div>
+                                                </div>
+                                            </td>
+
+
+                                        </tr>
+
+
+                                    </th:block>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by <a href="http://ISCAE GROUP.com/" target="_blank">ISCAE GROUP</a> 2022</p>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script th:src="@{/style/vendor/global/global.min.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/style/js/custom.min.js}"></script>
+<script th:src="@{/style/js/deznav-init.js}"></script>
+
+<!-- Datatable -->
+<script th:src="@{/style/vendor/datatables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/style/js/plugins-init/datatables.init.js}"></script>
+
+</body>
+</html>

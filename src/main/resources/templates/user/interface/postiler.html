@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- commants-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/style/images/logo.png}">
+    <link rel="icon" type="image/png" th:href="@{/style/images/logo.png}">
+    <title>
+        Offre | Utilisateurs
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link th:href="@{/assets/css/nucleo-icons.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <script th:src="@{/assets/js/42d5adcbca.js}" crossorigin="anonymous"></script>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" th:href="@{/assets/css/soft-ui-dashboard.css?v=1.0.3}" rel="stylesheet" />
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+<!-- Side begin-->
+<!-- side end -->
+<aside th:replace="user/interface/include/leftbar"></aside>
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav  th:replace="user/interface/include/navbar" ></nav>
+
+
+
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+
+        <div class="row">
+            <!--      ici -->
+
+            <form method="post" enctype="multipart/form-data" th:action="@{/user/offre/postOffer}">
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="6"></textarea>
+                </div>
+
+                <input type="number" th:value="${id}" name="id" hidden>
+
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" name="file" required>
+                    <label class="custom-file-label" for="validatedCustomFile">Choisi un fichier...</label>
+                    <div class="invalid-feedback">Le fichier est invalide</div>
+                </div>
+
+
+                <input type="submit" class="btn btn-success my-2" value="submit">
+            </form>
+
+
+        </div>
+
+    </div>
+</main>
+<!--   Core JS Files   -->
+<script th:src="@{/assets/js/core/popper.min.js}"></script>
+<script th:src="@{/assets/js/core/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/plugins/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/assets/js/plugins/smooth-scrollbar.min.js}"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+<!-- Github buttons -->
+<script async defer th:src="@{/assets/js/buttons.js}"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script th:src="@{/assets/js/soft-ui-dashboard.min.js?v=1.0.3}"></script>
+
+
+</body>
+
+</html>

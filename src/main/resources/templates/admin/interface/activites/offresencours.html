@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Offre | Administration</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/style/images/logo.png}">
+    <link th:href="@{/style/vendor/jqvmap/css/jqvmap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style/vendor/chartist/css/chartist.min.css}">
+    <link th:href="@{/style/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}" rel="stylesheet">
+    <link th:href="@{/style/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+    <link th:href="@{/style/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<div id="main-wrapper">
+
+    <div th:replace="admin/interface/include/navheader"></div>
+    <div th:replace="admin/interface/include/navbar"></div>
+
+    <div th:replace="admin/interface/include/leftbar"></div>
+    <div class="content-body">
+
+        <div class="container-fluid">
+            <div th:if="${param.creation}" class="alert alert-success">
+                Creation Avec successs
+            </div>
+            <div th:if="${param.modifier}" class="alert alert-info">
+                Modifier Avec successs
+            </div>
+            <div class="page-titles">
+                <h4>Administration</h4>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">[[${page_head}]]</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">[[${page}]]</a></li>
+                </ol>
+
+            </div>
+            <!-- row -->
+
+
+
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h6>Les offres En cours</h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Objectif</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date Fin</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Delai </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget </th>
+                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-secondary opacity-7"></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <th:block th:each="o : ${offreList}">
+                                        <tr>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">[[${o.objet}]]</p>
+                                            </td>
+                                            <td >
+                                                <span class="text-secondary text-xs font-weight-bold">[[${#dates.format(o.datePublication, 'dd-MMM-yyyy')}]]</span>
+                                            </td>
+                                            <td >
+                                                <span class="text-secondary text-xs font-weight-bold">[[${#dates.format(o.dateFin, 'dd-MMM-yyyy')}]]</span>
+                                            </td>
+
+                                            <td >
+                                                <span class="text-secondary text-xs font-weight-bold">[[${o.delai}]] / mois</span>
+                                            </td>
+                                            <td>
+
+                                                <p class="text-xs font-weight-bold mb-0">[[${#numbers.formatDecimal(o.montant, 1, 'DEFAULT', 2, 'DEFAULT')}]]</p>
+
+                                            </td>
+
+                                            <td class="align-middle">
+                                                <a th:href="@{'/admin/offres/details/' + ${o.id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Info">
+                                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a th:href="@{'/admin/pdffile/' + ${o.id} + '/offre.pdf'}"  class="text-secondary font-weight-bold text-xs" th:target="_blank" >
+                                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by <a href="http://ISCAE GROUP.com/" target="_blank">ISCAE GROUP</a> 2022</p>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script th:src="@{/style/vendor/global/global.min.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/style/js/custom.min.js}"></script>
+<script th:src="@{/style/js/deznav-init.js}"></script>
+
+<!-- Datatable -->
+<script th:src="@{/style/vendor/datatables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/style/js/plugins-init/datatables.init.js}"></script>
+
+</body>
+</html>

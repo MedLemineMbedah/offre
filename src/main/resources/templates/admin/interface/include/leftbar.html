@@ -1,0 +1,38 @@
+<div class="deznav" th:fragment="leftbar">
+  <div class="deznav-scroll">
+    <ul class="metismenu" id="menu">
+      <li><a class="has-arrow ai-icon" href="/javascript:void(0)" aria-expanded="false">
+        <i class="flaticon-381-networking"></i>
+        <span class="nav-text">Tableau De Bord</span>
+      </a>
+        <ul aria-expanded="false">
+          <li><a th:href="@{/admin/home}">Tableau De Bord</a></li>
+        </ul>
+      </li>
+      <li><a class="has-arrow ai-icon" href="/javascript:void(0)" aria-expanded="false">
+        <i class="flaticon-381-television"></i>
+        <span class="nav-text">Activites</span>
+      </a>
+        <ul aria-expanded="false">
+          <li><a th:href="@{/admin/offres}">Offres</a></li>
+          <li><a th:href="@{/admin/offres/encours}">Offres En cours</a></li>
+          <li><a th:href="@{/admin/offres/terminer}">Offres terminé</a></li>
+          <li><a th:href="@{/admin/offres/accorder}">Offres accorder</a></li>
+
+        </ul>
+      </li>
+      <li><a class="has-arrow ai-icon" href="/javascript:void(0)" aria-expanded="false">
+        <i class="flaticon-381-controls-3"></i>
+        <span class="nav-text">Personnel et Entreprise</span>
+      </a>
+        <ul aria-expanded="false">
+          <li><a th:href="@{/admin/list}">Personnel & Entreprise</a></li>
+<!--          <li><a th:href="@{/admin/ajoutUSerForm}">Ajouter</a></li>-->
+
+        </ul>
+      </li>
+    </ul>
+
+
+  </div>
+</div>

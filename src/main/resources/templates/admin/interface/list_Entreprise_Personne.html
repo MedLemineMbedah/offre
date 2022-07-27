@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Offre | Administration</title>
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/style/images/logo.png}">
+	<link th:href="@{/style/vendor/jqvmap/css/jqvmap.min.css}" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/style/vendor/chartist/css/chartist.min.css}">
+	<link th:href="@{/style/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}" rel="stylesheet">
+	<link th:href="@{/style/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+	<link th:href="@{/style/css/style.css}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!--*******************
+    Preloader start
+********************-->
+<div id="preloader">
+	<div class="sk-three-bounce">
+		<div class="sk-child sk-bounce1"></div>
+		<div class="sk-child sk-bounce2"></div>
+		<div class="sk-child sk-bounce3"></div>
+	</div>
+</div>
+<!--*******************
+    Preloader end
+********************-->
+
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+
+	<!--**********************************
+        Nav header start
+    ***********************************-->
+	<div class="nav-header">
+		<a href="index.html" class="brand-logo">
+			<img class="logo-abbr" th:src="@{/style/images/logo.png}" alt="">
+			<img class="logo-compact" th:src="@{/style/images/logo-text.png}" alt="">
+			<img class="brand-title" th:src="@{/style/images/logo-text.png}" alt="">
+		</a>
+
+		<div class="nav-control">
+			<div class="hamburger">
+				<span class="line"></span><span class="line"></span><span class="line"></span>
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+        Nav header end
+    ***********************************-->
+
+	<!--**********************************
+        Chat box start
+    ***********************************-->
+	<!--**********************************
+        Chat box End
+    ***********************************-->
+
+	<!--**********************************
+        Header start
+    ***********************************-->
+	<div th:replace="admin/interface/include/navbar"></div>
+	<!--**********************************
+        Header end ti-comment-alt
+    ***********************************-->
+
+	<!--**********************************
+        Sidebar start
+    ***********************************-->
+	<div th:replace="admin/interface/include/leftbar"></div>
+	<!--**********************************
+        Sidebar end
+    ***********************************-->
+
+	<!--**********************************
+        Content body start
+    ***********************************-->
+	<div class="content-body">
+		<!-- row -->
+		<div class="container-fluid">
+			<div class="form-head align-items-center d-flex mb-sm-4 mb-3">
+				<div class="mr-auto">
+					<h2 class="text-black font-w600">Entreprise</h2>
+					<p class="mb-0">Les Entreprises et leur gerants</p>
+				</div>
+				<div>
+					<a th:href="@{/admin/ajoutUSerForm}" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addOrderModal"> + Nouveaux Entreprise et Personne</a>
+					<!-- <a href="index.html" class="btn btn-outline-primary"><i class="las la-calendar-plus scale5 mr-3"></i>Filter Date</a> -->
+				</div>
+			</div>
+			<!-- Add Order -->
+			<div class="modal fade" id="addOrderModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Nouveaux Entreprise et Personne</h5>
+							<button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form th:action="@{/admin/savePA}" method="post" >
+								<br><br>
+								<h4>Personne :</h4>
+								<br><br>
+								<div class="form-group">
+									<label class="text-black font-w500">Nom</label>
+									<input type="text" class="form-control" th:value="${personne.nom}" name="nom">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Adresse</label>
+									<input type="text" class="form-control" th:value="${personne.adresse}" name="adresse">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Prenom</label>
+									<input type="text" class="form-control" th:value="${personne.prenom}" name="prenom">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Telephone</label>
+									<input type="text" class="form-control" th:value="${personne.telephone}" name="telephone">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Email</label>
+									<input type="email" class="form-control" th:value="${personne.email}" name="email">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Password</label>
+									<input type="password" class="form-control" th:value="${personne.password}" name="password">
+								</div>
+								<br><br>
+								<h4>Entreprise :</h4>
+								<br><br>
+								<div class="form-group">
+									<label class="text-black font-w500">Denomination</label>
+									<input type="text" class="form-control" th:value="${entreprise.denomination}" name="denomination">
+								</div>
+								<div class="form-group">
+									<label class="text-black font-w500">Immatriculation</label>
+									<input type="text" class="form-control" th:value="${entreprise.immatriculation}" name="immatriculation">
+								</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary">Enregistrer</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="table-responsive card-table">
+						<table id="example5" class="display dataTablesCard white-border table-responsive-xl">
+							<thead>
+							<tr>
+<!--								<th>-->
+<!--									<div class="custom-control custom-checkbox">-->
+<!--										<input type="checkbox" class="custom-control-input" id="checkAll" required="">-->
+<!--										<label class="custom-control-label" for="checkAll"></label>-->
+<!--									</div>-->
+<!--								</th>-->
+
+<!--								<th>denomination</th>-->
+								<th>Denomination</th>
+								<th>Immatriculation</th>
+								<th>Nom Personne</th>
+<!--								<th>telephone</th>-->
+								<!-- <th>Status</th>
+                                <th>Room No</th> -->
+								<th></th>
+							</tr>
+							</thead>
+							<tbody>
+							<th:block th:each="entreprise :${entrepriseList}">
+							<tr>
+<!--								<td>-->
+<!--									<div class="custom-control custom-checkbox">-->
+<!--										<input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">-->
+<!--										<label class="custom-control-label" for="customCheckBox2"></label>-->
+<!--									</div>-->
+<!--								</td>-->
+<!--								<td>[[${entreprise.denomination}]]</td>-->
+								<td>[[${entreprise.denomination}]]</td>
+								<td>[[${entreprise.immatriculation}]]</td>
+								<td>[[${entreprise.getPersonne().getNom()}]]  [[${entreprise.getPersonne().getPrenom()}]] </td>
+<!--								<td>S[[${entreprise.immatriculation}]]</td>-->
+<!--								<td>-->
+<!--											<span class="badge badge-outline-primary">-->
+<!--												<i class="fa fa-circle text-primary mr-1"></i>-->
+<!--												New Patient-->
+<!--											</span>-->
+<!--								</td>-->
+<!--								<td>AB-004</td>-->
+								<td>
+									<div class="dropdown ml-auto text-right">
+										<div class="btn-link" data-toggle="dropdown">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4Z" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+										</div>
+										<div class="dropdown-menu dropdown-menu-right">
+											<a class="dropdown-item"  th:href="@{'/admin/updateEntrepriseForm/' + ${entreprise.id}}">modifier</a>
+											<a class="dropdown-item"  th:href="@{'/admin/deleteAdminEntreprise/' + ${entreprise.id}}">supprimer</a>
+<!--											<a class="dropdown-item" href="#">View Details</a>-->
+										</div>
+									</div>
+								</td>
+							</tr>
+							</th:block>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--**********************************
+        Content body end
+    ***********************************-->
+	<!--**********************************
+            Content body end
+        ***********************************-->
+
+	<!--**********************************
+        Footer start
+    ***********************************-->
+	<div class="footer">
+		<div class="copyright">
+			<p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">ISCAE group</a> 2022</p>
+		</div>
+	</div>
+	<!--**********************************
+        Footer end
+    ***********************************-->
+
+	<!--**********************************
+       Support ticket button start
+    ***********************************-->
+
+	<!--**********************************
+       Support ticket button end
+    ***********************************-->
+
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<!-- Required vendors -->
+<script th:src="@{/style/vendor/global/global.min.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/style/vendor/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/style/js/custom.min.js}"></script>
+<script th:src="@{/style/js/deznav-init.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-datetimepicker/js/moment.js}"></script>
+<script th:src="@{/style/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<!-- Chart piety plugin files -->
+<script th:src="@{/style/vendor/peity/jquery.peity.min.js}"></script>
+
+<!-- Apex Chart -->
+<script th:src="@{/style/vendor/apexchart/apexchart.js}"></script>
+
+<!-- Dashboard 1 -->
+<script th:src="@{/style/js/dashboard/dashboard-1.js}"></script>
+<script>
+		$(function () {
+			$('#datetimepicker1').datetimepicker({
+				inline: true,
+			});
+		});
+	</script>
+</body>
+</html>
